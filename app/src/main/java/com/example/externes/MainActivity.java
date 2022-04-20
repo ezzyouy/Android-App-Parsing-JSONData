@@ -17,7 +17,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -80,7 +79,6 @@ public class MainActivity extends AppCompatActivity {
             json=new String(buffer,"UTF-8");
         } catch (IOException e) {
             e.printStackTrace();
-            return json;
         }
         return json;
     }
@@ -112,7 +110,8 @@ public class MainActivity extends AppCompatActivity {
         @Override
             public View getView(final int position, View convertView, ViewGroup parent) {
             if(convertView==null){
-                convertView= LayoutInflater.from(context).inflate(R.layout.list_item,parent, false);
+                convertView= LayoutInflater.from(context).inflate(R.layout.list_item,
+                        parent, false);
             }
             TextView name, job, email,phone;
             name=convertView.findViewById(R.id.txt_name);
@@ -130,8 +129,9 @@ public class MainActivity extends AppCompatActivity {
             callbtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    Uri tel=Uri.parse("tel : "+ model.getPhone());
-                    Intent activity2=new Intent(Intent.ACTION_DIAL, tel);
+                    //Uri tel=Uri.parse("tel : "+ model.getPhone()); --> that one didn't work for me
+                    Intent activity2=new Intent(Intent.ACTION_DIAL);
+                    activity2.setData(Uri.parse("tel:"+model.getPhone()));// this is the true ways
                     startActivity(activity2);
 
                 }

@@ -6,5 +6,7 @@ the main of this application is the extract data from a json file, and adapte th
 the file path : ./app/src/main/assets/data.json
 
 ## Application Screen
-
+### main
 ![](./capture/main.png)
+### call screen
+![](./capture/phone.png)
